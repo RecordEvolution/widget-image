@@ -1,0 +1,84 @@
+
+{
+    "title": "Configure the Chart",
+    "type": "object",
+    "properties": {
+        "title": {
+            "title": "Title Settings",
+            "type": "object",
+            "properties": {
+                "text": {
+                    "title": "Text",
+                    "type": "string"
+                },
+                "fontSize": {
+                    "title": "Font Size",
+                    "type": "string"
+                },
+                "fontWeight": {
+                    "title": "Font Weight",
+                    "type": "number"
+                },
+                "color": {
+                    "title": "Font Color",
+                    "type": "string"
+                },
+                "backgroundColor": {
+                    "title": "Background Color",
+                    "type": "string"
+                }
+            },
+            "required": []
+        },
+        "subTitle": {
+            "title": "Subtitle Settings",
+            "type": "object",
+            "properties": {
+                "text": {
+                    "title": "Text",
+                    "type": "string"
+                },
+                "fontSize": {
+                    "title": "Font Size",
+                    "type": "string"
+                },
+                "fontWeight": {
+                    "title": "Font Weight",
+                    "type": "number"
+                },
+                "color": {
+                    "title": "Font Color",
+                    "type": "string"
+                }
+            },
+            "required": []
+        },
+        "body": {
+            "title": "Body Settings",
+            "type": "object",
+            "properties": {
+                "text": {
+                    "title": "Text",
+                    "type": "string"
+                },
+                "fontSize": {
+                    "title": "Font Size",
+                    "type": "string"
+                },
+                "fontWeight": {
+                    "title": "Font Weight",
+                    "type": "number"
+                },
+                "color": {
+                    "title": "Font Color",
+                    "type": "string"
+                },
+                "backgroundColor": {
+                    "title": "Background Color",
+                    "type": "string"
+                }
+            },
+            "required": []
+        }
+    }
+}
