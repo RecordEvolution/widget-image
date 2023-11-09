@@ -1,8 +1,6 @@
 {    
     "title": {
-    "text": "An Image Demo",
-    "backgroundColor": "#0567ff",
-    "color": "white"
+        "text": "An Image Demo"
     },
     "subTitle": {
         "text": "This is a Sub title"
