@@ -1,6 +1,6 @@
 
 {
-    "title": "Configure the Chart",
+    "title": "Configure the Image",
     "type": "object",
     "properties": {
         "title": {
@@ -53,32 +53,9 @@
             },
             "required": []
         },
-        "body": {
-            "title": "Body Settings",
-            "type": "object",
-            "properties": {
-                "text": {
-                    "title": "Text",
-                    "type": "string"
-                },
-                "fontSize": {
-                    "title": "Font Size",
-                    "type": "string"
-                },
-                "fontWeight": {
-                    "title": "Font Weight",
-                    "type": "number"
-                },
-                "color": {
-                    "title": "Font Color",
-                    "type": "string"
-                },
-                "backgroundColor": {
-                    "title": "Background Color",
-                    "type": "string"
-                }
-            },
-            "required": []
+        "imageLink": {
+            "title": "Link to the Image",
+            "type": "string"
         }
     }
 }

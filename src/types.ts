@@ -1,8 +1,9 @@
 export interface InputData {
     title: Block
     subTitle: Block
-    body: Block
+    imageLink: string
 }
+
 export interface Block {
     text: string,
     fontSize: string,
