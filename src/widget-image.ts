@@ -64,7 +64,7 @@ export class WidgetImage extends LitElement {
           style="font-size: ${this.inputData?.subTitle?.fontSize}; font-weight: ${this.inputData?.subTitle?.fontWeight}; color: ${this.inputData?.subTitle?.color};">
           ${this.inputData?.subTitle?.text}
         </h3>
-        <div class="img-container">
+        <div class="img-container paging" ?active="${this.inputData?.imageLink}">
           <img src="${this.inputData.imageLink}" alt="Image Widget">
         </div>
       </div>
