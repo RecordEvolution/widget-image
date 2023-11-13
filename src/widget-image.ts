@@ -32,15 +32,15 @@ export class WidgetImage extends LitElement {
     border-top-left-radius: 12px;
   }
 
-  h3 {
+  p {
     margin: 0;
     padding: 12px;
   }
 
   .img-container{
-    width: 100%; /* Set the width of the container */
-    height: 100%;
+    flex: 1;
     box-sizing: border-box;
+    overflow: hidden;
   }
 
   img {
@@ -60,10 +60,10 @@ export class WidgetImage extends LitElement {
             background-color: ${this.inputData?.title?.backgroundColor};">
           ${this.inputData?.title?.text}
         </h2>
-        <h3 class="paging" ?active=${this.inputData?.subTitle?.text}
+        <p class="paging" ?active=${this.inputData?.subTitle?.text}
           style="font-size: ${this.inputData?.subTitle?.fontSize}; font-weight: ${this.inputData?.subTitle?.fontWeight}; color: ${this.inputData?.subTitle?.color};">
           ${this.inputData?.subTitle?.text}
-        </h3>
+        </p>
         <div class="img-container paging" ?active="${this.inputData?.imageLink}">
           <img src="${this.inputData?.imageLink}" alt="Image Widget">
         </div>
