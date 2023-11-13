@@ -65,7 +65,7 @@ export class WidgetImage extends LitElement {
           ${this.inputData?.subTitle?.text}
         </h3>
         <div class="img-container paging" ?active="${this.inputData?.imageLink}">
-          <img src="${this.inputData.imageLink}" alt="Image Widget">
+          <img src="${this.inputData?.imageLink}" alt="Image Widget">
         </div>
       </div>
     `;
