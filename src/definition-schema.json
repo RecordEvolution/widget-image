@@ -21,11 +21,11 @@
                 },
                 "color": {
                     "title": "Font Color",
-                    "type": "string"
+                    "type": "color"
                 },
                 "backgroundColor": {
                     "title": "Background Color",
-                    "type": "string"
+                    "type": "color"
                 }
             },
             "required": []
@@ -48,7 +48,7 @@
                 },
                 "color": {
                     "title": "Font Color",
-                    "type": "string"
+                    "type": "color"
                 }
             },
             "required": []
