@@ -10,7 +10,6 @@ export class WidgetImage extends LitElement {
   static styles = css`
   :host {
     display: block;
-    // color: var(--re-text-color, #000);
     font-family: sans-serif;
     box-sizing: border-box;
     margin: auto;
