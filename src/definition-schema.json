@@ -27,8 +27,7 @@
                     "title": "Background Color",
                     "type": "color"
                 }
-            },
-            "required": []
+            }
         },
         "subTitle": {
             "title": "Subtitle Settings",
@@ -50,8 +49,7 @@
                     "title": "Font Color",
                     "type": "color"
                 }
-            },
-            "required": []
+            }
         },
         "imageLink": {
             "title": "Link to the Image",
