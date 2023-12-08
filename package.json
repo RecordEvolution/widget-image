@@ -1,35 +1,36 @@
 {
-  "name": "widget-image",
-  "description": "Webcomponent widget-image following open-wc recommendations",
-  "license": "MIT",
-  "author": "widget-image",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "dist/src/index.js",
-  "module": "dist/src/index.js",
-  "exports": {
-    ".": "./dist/src/index.js",
-    "./widget-image.js": "./dist/src/widget-image.js"
-  },
-  "scripts": {
-    "analyze": "cem analyze --litelement",
-    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
-    "build": "rollup -c rollup.config.js",
-    "prepublish": "rollup -c rollup.config.js"
-  },
-  "dependencies": {
-    "lit": "^3.0.2"
-  },
-  "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.9.0",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.5",
-    "@web/dev-server": "^0.4.0",
-    "concurrently": "^8.2.2",
-    "tslib": "^2.6.2",
-    "typescript": "^5.2.2"
-  },
-  "customElements": "custom-elements.json"
+    "name": "widget-image",
+    "description": "Webcomponent widget-image following open-wc recommendations",
+    "license": "MIT",
+    "author": "widget-image",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "dist/src/index.js",
+    "module": "dist/src/index.js",
+    "exports": {
+        ".": "./dist/src/index.js",
+        "./widget-image.js": "./dist/src/widget-image.js"
+    },
+    "scripts": {
+        "analyze": "cem analyze --litelement",
+        "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
+        "build": "rollup -c rollup.config.js",
+        "prepublish": "rollup -c rollup.config.js",
+        "release": "npm version patch --tag-version-prefix='' && git push && git push --tag"
+    },
+    "dependencies": {
+        "lit": "^3.0.2"
+    },
+    "devDependencies": {
+        "@custom-elements-manifest/analyzer": "^0.9.0",
+        "@rollup/plugin-babel": "^6.0.4",
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-typescript": "^11.1.5",
+        "@web/dev-server": "^0.4.0",
+        "concurrently": "^8.2.2",
+        "tslib": "^2.6.2",
+        "typescript": "^5.2.2"
+    },
+    "customElements": "custom-elements.json"
 }
