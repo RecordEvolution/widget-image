@@ -5,12 +5,12 @@
     "author": "widget-image",
     "version": "1.0.1",
     "type": "module",
-    "main": "dist/src/index.js",
-    "module": "dist/src/index.js",
-    "exports": {
-        ".": "./dist/src/index.js",
-        "./widget-image.js": "./dist/src/widget-image.js"
-    },
+    "main": "dist/widget-image.js",
+    "types": "dist/src/widget-image.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
     "scripts": {
         "analyze": "cem analyze --litelement",
         "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
