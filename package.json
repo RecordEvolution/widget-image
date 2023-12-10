@@ -3,7 +3,7 @@
     "description": "Webcomponent widget-image following open-wc recommendations",
     "license": "MIT",
     "author": "widget-image",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "type": "module",
     "main": "dist/widget-image.js",
     "types": "dist/src/widget-image.d.ts",
