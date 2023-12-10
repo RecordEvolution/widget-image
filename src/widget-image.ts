@@ -3,8 +3,8 @@ import { property, state } from 'lit/decorators.js';
 import { InputData } from './types.js'
 
 export class WidgetImage extends LitElement {
-  
-  @property({type: Object}) 
+
+  @property({ type: Object })
   inputData = {} as InputData
 
   static styles = css`
@@ -24,17 +24,19 @@ export class WidgetImage extends LitElement {
     width: 100%;
   }
 
-  h2 {
+  h3 {
     margin: 0;
-    padding: 12px;
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: var(--re-user-h2-color, --re-text-color, #000);
   }
-
-  p {
-    margin: 0;
-    padding: 12px;
+p {
+    margin: 10px 0 0 0;
+    max-width: 300px;
+    font-size: 14px;
+    line-height: 17px;
     color: var(--re-user-p-color, --re-text-color, #000);
   }
 
@@ -49,7 +51,7 @@ export class WidgetImage extends LitElement {
     height: 100%;
     object-fit: contain;
   } 
-`; 
+`;
 
   render() {
     this.style.setProperty("--re-user-h2-color", this.inputData?.title?.color)
@@ -57,12 +59,12 @@ export class WidgetImage extends LitElement {
 
     return html`
       <div class="wrapper">
-          <h2 class="paging" ?active=${this.inputData?.title?.text}
+          <h3 class="paging" ?active=${this.inputData?.title?.text}
           style="font-size: ${this.inputData?.title?.fontSize}; 
             font-weight: ${this.inputData?.title?.fontWeight}; 
             background-color: ${this.inputData?.title?.backgroundColor};">
           ${this.inputData?.title?.text}
-        </h2>
+        </h3>
         <p class="paging" ?active=${this.inputData?.subTitle?.text}
           style="font-size: ${this.inputData?.subTitle?.fontSize}; font-weight: ${this.inputData?.subTitle?.fontWeight};">
           ${this.inputData?.subTitle?.text}
