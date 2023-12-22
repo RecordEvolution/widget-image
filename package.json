@@ -1,5 +1,5 @@
 {
-    "name": "widget-image",
+    "name": "@record-evolution/widget-image",
     "description": "Webcomponent widget-image following open-wc recommendations",
     "license": "MIT",
     "author": "widget-image",
@@ -14,8 +14,8 @@
     "scripts": {
         "analyze": "cem analyze --litelement",
         "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
-        "build": "rollup -c rollup.config.js",
-        "prepublish": "rollup -c rollup.config.js",
+        "build": "rollup -c rollup.config.js --bundleConfigAsCjs",
+        "watch": "rollup -w -c rollup.config.js --bundleConfigAsCjs",
         "release": "npm version patch --tag-version-prefix='' && git push && git push --tag"
     },
     "dependencies": {
@@ -26,11 +26,23 @@
         "@rollup/plugin-babel": "^6.0.4",
         "@rollup/plugin-commonjs": "^25.0.7",
         "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-replace": "^5.0.5",
         "@rollup/plugin-typescript": "^11.1.5",
         "@web/dev-server": "^0.4.0",
         "concurrently": "^8.2.2",
         "tslib": "^2.6.2",
         "typescript": "^5.2.2"
     },
-    "customElements": "custom-elements.json"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/RecordEvolution/widget-image.git"
+    },
+    "keywords": [
+        "widget",
+        "image"
+    ],
+    "bugs": {
+        "url": "https://github.com/RecordEvolution/widget-image/issues"
+    },
+    "homepage": "https://github.com/RecordEvolution/widget-image#readme"
 }

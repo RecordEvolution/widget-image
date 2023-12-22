@@ -7,6 +7,8 @@ export class WidgetImage extends LitElement {
   @property({ type: Object })
   inputData = {} as InputData
 
+  version: string = 'versionplaceholder'
+
   static styles = css`
   :host {
     display: block;
@@ -81,4 +83,4 @@ export class WidgetImage extends LitElement {
     `;
   }
 }
-window.customElements.define('widget-image', WidgetImage)
+window.customElements.define('widget-image-versionplaceholder', WidgetImage)
