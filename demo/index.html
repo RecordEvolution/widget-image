@@ -1,44 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-GB">
-<head>
-  <meta charset="utf-8">
-  <title>Image</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-    }
-    widget-image, #demo {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-</head>
-<body>
-  <div id="demo"></div>
+    <head>
+        <meta charset="utf-8" />
+        <title>Image</title>
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            * {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="demo"></div>
 
-  <script src="https://storage.googleapis.com/reswarm-images/ObjectRandomizer.js"></script>
-  
-  <script type="module">
-    import { html, render } from 'lit';
-    import '../dist/src/widget-image.js';
-    import data from '../src/default-data.json' assert { type: 'json' };
-    
-    const keyPathsToRandomize = ['title.text', 'subTitle.fontWeight'];
-    setInterval(() => {
-      const randomizedObj = randomizeObjectValues(data, keyPathsToRandomize);
+        <script src="https://storage.googleapis.com/reswarm-images/ObjectRandomizer.js"></script>
 
-      render(
-        html`
-          <widget-image-versionplaceholder .inputData=${randomizedObj}>
-            some light-dom
-          </widget-image-versionplaceholder>
-        `,
-        document.querySelector('#demo')
-      )}
-      , 1000)
-  </script>
-</body>
+        <script type="module">
+            import { html, render } from 'lit'
+            import '../dist/src/widget-image.js'
+            import data from '../src/default-data.json' assert { type: 'json' }
+
+            const keyPathsToRandomize = ['title.text', 'subTitle.fontWeight']
+            setInterval(() => {
+                const randomizedObj = randomizeObjectValues(data, keyPathsToRandomize)
+
+                render(
+                    html`
+                        <widget-image-versionplaceholder .inputData=${randomizedObj}>
+                            some light-dom
+                        </widget-image-versionplaceholder>
+                    `,
+                    document.querySelector('#demo')
+                )
+            }, 1000)
+        </script>
+    </body>
 </html>
