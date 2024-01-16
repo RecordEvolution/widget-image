@@ -25,13 +25,13 @@
                 "color": {
                     "title": "Font Color",
                     "order": 4,
-                    "type": "string",
+                    "type": "color",
                     "color": true
                 },
                 "backgroundColor": {
                     "title": "Background Color",
                     "order": 5,
-                    "type": "string",
+                    "type": "color",
                     "color": true
                 }
             }
@@ -59,7 +59,7 @@
                 "color": {
                     "title": "Font Color",
                     "order": 4,
-                    "type": "string",
+                    "type": "color",
                     "color": true
                 }
             }
