@@ -1,4 +1,5 @@
 import { html, css, LitElement } from 'lit'
+import { repeat } from 'lit/directives/repeat.js'
 import { property, state } from 'lit/decorators.js'
 import { ConfigureTheImage } from './definition-schema.js'
 
@@ -69,26 +70,34 @@ export class WidgetImage extends LitElement {
 
         return html`
             <div class="wrapper">
-                <h3
-                    class="paging"
-                    ?active=${this.inputData?.title?.text}
-                    style="font-size: ${this.inputData?.title?.fontSize}; 
-          font-weight: ${this.inputData?.title?.fontWeight}; 
-          background-color: ${this.inputData?.title?.backgroundColor};"
-                >
-                    ${this.inputData?.title?.text}
-                </h3>
-                <p
-                    class="paging"
-                    ?active=${this.inputData?.subTitle?.text}
-                    style="font-size: ${this.inputData?.subTitle?.fontSize}; font-weight: ${this.inputData
-                        ?.subTitle?.fontWeight};"
-                >
-                    ${this.inputData?.subTitle?.text}
-                </p>
-                <div class="img-container paging" ?active="${this.inputData?.imageLink}">
-                    <img src="${this.inputData?.imageLink ?? ''}" alt="Image Widget" />
-                </div>
+                ${repeat(
+                    [...this.inputData.dataSeries()].sort(),
+                    ([label]) => label,
+                    ([label, ds]) => {
+                        return html` <div>
+                            <h3
+                                class="paging"
+                                ?active=${this.inputData?.title?.text}
+                                style="font-size: ${this.inputData?.title?.fontSize}; 
+            font-weight: ${this.inputData?.title?.fontWeight}; 
+            background-color: ${this.inputData?.title?.backgroundColor};"
+                            >
+                                ${this.inputData?.title?.text}
+                            </h3>
+                            <p
+                                class="paging"
+                                ?active=${this.inputData?.subTitle?.text}
+                                style="font-size: ${this.inputData?.subTitle?.fontSize}; font-weight: ${this
+                                    .inputData?.subTitle?.fontWeight};"
+                            >
+                                ${this.inputData?.subTitle?.text}
+                            </p>
+                            <div class="img-container paging" ?active="${this.inputData?.imageLink}">
+                                <img src="${this.inputData?.imageLink ?? ''}" alt="Image Widget" />
+                            </div>
+                        </div>`
+                    }
+                )}
             </div>
         `
     }
