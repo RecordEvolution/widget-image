@@ -8,12 +8,9 @@
 export type Text = string;
 export type FontSize = string;
 export type FontWeight = number;
-export type FontColor = string;
-export type BackgroundColor = string;
 export type Text1 = string;
 export type FontSize1 = string;
 export type FontWeight1 = number;
-export type FontColor1 = string;
 export type LinkToTheImage = string;
 
 export interface ConfigureTheImage {
@@ -30,6 +27,8 @@ export interface TitleSettings {
   backgroundColor?: BackgroundColor;
   [k: string]: unknown;
 }
+export type FontColor = string;
+export type BackgroundColor = string;
 export interface SubtitleSettings {
   text?: Text1;
   fontSize?: FontSize1;
@@ -37,3 +36,4 @@ export interface SubtitleSettings {
   color?: FontColor1;
   [k: string]: unknown;
 }
+export type FontColor1 = string;
