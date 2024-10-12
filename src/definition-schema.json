@@ -15,11 +15,13 @@
                 "fontSize": {
                     "title": "Font Size",
                     "order": 2,
+                    "dataDrivenDisabled": true,
                     "type": "string"
                 },
                 "fontWeight": {
                     "title": "Font Weight",
                     "order": 3,
+                    "dataDrivenDisabled": true,
                     "type": "number"
                 },
                 "color": {
@@ -49,11 +51,13 @@
                 "fontSize": {
                     "title": "Font Size",
                     "order": 2,
+                    "dataDrivenDisabled": true,
                     "type": "string"
                 },
                 "fontWeight": {
                     "title": "Font Weight",
                     "order": 3,
+                    "dataDrivenDisabled": true,
                     "type": "number"
                 },
                 "color": {
