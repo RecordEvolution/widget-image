@@ -59,6 +59,16 @@ export class WidgetImage extends LitElement {
             height: 100%;
             object-fit: contain;
         }
+        .no-data {
+            font-size: 20px;
+            color: var(--re-text-color, #000);
+            display: flex;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
     `
 
     render() {
@@ -86,6 +96,7 @@ export class WidgetImage extends LitElement {
                 >
                     ${this.inputData?.subTitle?.text}
                 </p>
+                <div class="paging no-data" ?active=${!this.inputData?.imageLink}>No Image</div>
                 <div class="img-container paging" ?active="${this.inputData?.imageLink}">
                     <img src="${this.inputData?.imageLink ?? ''}" alt="Image Widget" />
                 </div>
