@@ -27,8 +27,12 @@ export interface TitleSettings {
   backgroundColor?: BackgroundColor;
   [k: string]: unknown;
 }
-export type FontColor = string;
-export type BackgroundColor = string;
+export interface FontColor {
+  [k: string]: unknown;
+}
+export interface BackgroundColor {
+  [k: string]: unknown;
+}
 export interface SubtitleSettings {
   text?: Text1;
   fontSize?: FontSize1;
@@ -36,4 +40,6 @@ export interface SubtitleSettings {
   color?: FontColor1;
   [k: string]: unknown;
 }
-export type FontColor1 = string;
+export interface FontColor1 {
+  [k: string]: unknown;
+}
