@@ -1,10 +1,16 @@
 import { html, css, LitElement } from 'lit'
 import { property, state } from 'lit/decorators.js'
 import { ConfigureTheImage } from './definition-schema.js'
-
+type Theme = {
+    theme_name: string
+    theme_object: any
+}
 export class WidgetImage extends LitElement {
     @property({ type: Object })
     inputData?: ConfigureTheImage
+
+    @property({ type: Object })
+    theme?: Theme
 
     version: string = 'versionplaceholder'
 
@@ -14,6 +20,7 @@ export class WidgetImage extends LitElement {
             font-family: sans-serif;
             box-sizing: border-box;
             margin: auto;
+            background-color: var(--re-background-color, #fff);
         }
 
         .paging:not([active]) {
@@ -35,7 +42,7 @@ export class WidgetImage extends LitElement {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            color: var(--re-text-color, #000) !important;
+            color: var(--re-text-color, #000);
         }
         p {
             margin: 10px 0 0 0;
@@ -45,7 +52,7 @@ export class WidgetImage extends LitElement {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            color: var(--re-text-color, #000) !important;
+            color: var(--re-text-color, #000);
         }
 
         .img-container {
@@ -72,19 +79,16 @@ export class WidgetImage extends LitElement {
     `
 
     render() {
-        if (this.inputData?.title?.color)
-            this.style.setProperty('--re-user-h2-color', this.inputData?.title?.color)
-        if (this.inputData?.subTitle?.color)
-            this.style.setProperty('--re-user-p-color', this.inputData?.subTitle?.color)
-
         return html`
-            <div class="wrapper">
+            <div class="wrapper" style="background-color: ${this.theme?.theme_object?.backgroundColor}">
                 <h3
                     class="paging"
                     ?active=${this.inputData?.title?.text}
                     style="font-size: ${this.inputData?.title?.fontSize}; 
           font-weight: ${this.inputData?.title?.fontWeight}; 
-          background-color: ${this.inputData?.title?.backgroundColor};"
+          background-color: ${this.inputData?.title?.backgroundColor ??
+                    this.theme?.theme_object?.backgroundColor};
+          color: ${this.inputData?.title?.color ?? this.theme?.theme_object?.title.textStyle.color};"
                 >
                     ${this.inputData?.title?.text}
                 </h3>
@@ -92,7 +96,8 @@ export class WidgetImage extends LitElement {
                     class="paging"
                     ?active=${this.inputData?.subTitle?.text}
                     style="font-size: ${this.inputData?.subTitle?.fontSize}; font-weight: ${this.inputData
-                        ?.subTitle?.fontWeight};"
+                        ?.subTitle?.fontWeight}; color: ${this.inputData?.subTitle?.color ??
+                    this.theme?.theme_object?.title.textStyle.color};"
                 >
                     ${this.inputData?.subTitle?.text}
                 </p>
