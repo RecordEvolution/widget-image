@@ -12,7 +12,24 @@ export class WidgetImage extends LitElement {
     @property({ type: Object })
     theme?: Theme
 
+    @state() private themeBgColor?: string
+    @state() private themeTitleColor?: string
+    @state() private themeSubtitleColor?: string
+
     version: string = 'versionplaceholder'
+
+    update(changedProperties: Map<string, any>) {
+        if (changedProperties.has('theme')) {
+            const cssTextColor = getComputedStyle(this).getPropertyValue('--re-text-color').trim()
+            const cssBgColor = getComputedStyle(this).getPropertyValue('--re-background-color').trim()
+            this.themeBgColor = cssBgColor || this.theme?.theme_object?.backgroundColor
+            this.themeTitleColor = cssTextColor || this.theme?.theme_object?.title?.textStyle?.color
+            this.themeSubtitleColor =
+                cssTextColor || this.theme?.theme_object?.title?.subtextStyle?.color || this.themeTitleColor
+        }
+
+        super.update(changedProperties)
+    }
 
     static styles = css`
         :host {
@@ -20,7 +37,6 @@ export class WidgetImage extends LitElement {
             font-family: sans-serif;
             box-sizing: border-box;
             margin: auto;
-            background-color: var(--re-background-color, #fff);
         }
 
         .paging:not([active]) {
@@ -42,7 +58,6 @@ export class WidgetImage extends LitElement {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            color: var(--re-text-color, #000);
         }
         p {
             margin: 10px 0 0 0;
@@ -52,7 +67,6 @@ export class WidgetImage extends LitElement {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            color: var(--re-text-color, #000);
         }
 
         .img-container {
@@ -68,7 +82,6 @@ export class WidgetImage extends LitElement {
         }
         .no-data {
             font-size: 20px;
-            color: var(--re-text-color, #000);
             display: flex;
             height: 100%;
             width: 100%;
@@ -80,28 +93,35 @@ export class WidgetImage extends LitElement {
 
     render() {
         return html`
-            <div class="wrapper" style="background-color: ${this.theme?.theme_object?.backgroundColor}">
+            <div class="wrapper" style="background-color: ${this.themeBgColor}">
                 <h3
                     class="paging"
                     ?active=${this.inputData?.title?.text}
                     style="font-size: ${this.inputData?.title?.fontSize}; 
-          font-weight: ${this.inputData?.title?.fontWeight}; 
-          background-color: ${this.inputData?.title?.backgroundColor ??
-                    this.theme?.theme_object?.backgroundColor};
-          color: ${this.inputData?.title?.color ?? this.theme?.theme_object?.title.textStyle.color};"
+                        font-weight: ${this.inputData?.title?.fontWeight}; 
+                        background-color: ${this.inputData?.title?.backgroundColor};
+                        color: ${this.inputData?.title?.color ?? this.themeTitleColor};"
                 >
                     ${this.inputData?.title?.text}
                 </h3>
                 <p
                     class="paging"
                     ?active=${this.inputData?.subTitle?.text}
-                    style="font-size: ${this.inputData?.subTitle?.fontSize}; font-weight: ${this.inputData
-                        ?.subTitle?.fontWeight}; color: ${this.inputData?.subTitle?.color ??
-                    this.theme?.theme_object?.title.textStyle.color};"
+                    style="font-size: ${this.inputData?.subTitle?.fontSize}; 
+                        font-weight: ${this.inputData?.subTitle?.fontWeight}; 
+                        color: ${this.inputData?.subTitle?.color ?? this.themeSubtitleColor};"
                 >
                     ${this.inputData?.subTitle?.text}
                 </p>
-                <div class="paging no-data" ?active=${!this.inputData?.imageLink}>No Image</div>
+                <div
+                    class="paging no-data"
+                    ?active=${!this.inputData?.imageLink}
+                    style="font-size: ${this.inputData?.title?.fontSize}; 
+                        font-weight: ${this.inputData?.title?.fontWeight}; 
+                        color: ${this.inputData?.title?.color ?? this.themeTitleColor};"
+                >
+                    No Image
+                </div>
                 <div class="img-container paging" ?active="${this.inputData?.imageLink}">
                     <img src="${this.inputData?.imageLink ?? ''}" alt="Image Widget" />
                 </div>
