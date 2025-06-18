@@ -1,4 +1,4 @@
-import { html, css, LitElement } from 'lit'
+import { html, css, LitElement, PropertyValues } from 'lit'
 import { property, state } from 'lit/decorators.js'
 import { ConfigureTheImage } from './definition-schema.js'
 type Theme = {
@@ -20,15 +20,23 @@ export class WidgetImage extends LitElement {
 
     update(changedProperties: Map<string, any>) {
         if (changedProperties.has('theme')) {
-            const cssTextColor = getComputedStyle(this).getPropertyValue('--re-text-color').trim()
-            const cssBgColor = getComputedStyle(this).getPropertyValue('--re-background-color').trim()
-            this.themeBgColor = cssBgColor || this.theme?.theme_object?.backgroundColor
-            this.themeTitleColor = cssTextColor || this.theme?.theme_object?.title?.textStyle?.color
-            this.themeSubtitleColor =
-                cssTextColor || this.theme?.theme_object?.title?.subtextStyle?.color || this.themeTitleColor
+            this.registerTheme(this.theme)
         }
 
         super.update(changedProperties)
+    }
+
+    protected firstUpdated(_changedProperties: PropertyValues): void {
+        this.registerTheme(this.theme)
+    }
+
+    registerTheme(theme?: Theme) {
+        const cssTextColor = getComputedStyle(this).getPropertyValue('--re-text-color').trim()
+        const cssBgColor = getComputedStyle(this).getPropertyValue('--re-background-color').trim()
+        this.themeBgColor = cssBgColor || this.theme?.theme_object?.backgroundColor
+        this.themeTitleColor = cssTextColor || this.theme?.theme_object?.title?.textStyle?.color
+        this.themeSubtitleColor =
+            cssTextColor || this.theme?.theme_object?.title?.subtextStyle?.color || this.themeTitleColor
     }
 
     static styles = css`
