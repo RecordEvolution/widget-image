@@ -8,7 +8,7 @@
             "type": "string"
         },
         "subTitle": {
-            "title": "Subtitle Settings",
+            "title": "Subtitle",
             "order": 2,
             "type": "string"
         },
