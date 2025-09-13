@@ -1,10 +1,11 @@
 import { html, css, LitElement, PropertyValues } from 'lit'
-import { property, state } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 import { ConfigureTheImage } from './definition-schema.js'
 type Theme = {
     theme_name: string
     theme_object: any
 }
+@customElement('widget-image-versionplaceholder')
 export class WidgetImage extends LitElement {
     @property({ type: Object })
     inputData?: ConfigureTheImage
@@ -102,39 +103,27 @@ export class WidgetImage extends LitElement {
     render() {
         return html`
             <div class="wrapper" style="background-color: ${this.themeBgColor}">
-                <h3
-                    class="paging"
-                    ?active=${this.inputData?.title?.text}
-                    style="font-size: ${this.inputData?.title?.fontSize}; 
-                        font-weight: ${this.inputData?.title?.fontWeight}; 
-                        background-color: ${this.inputData?.title?.backgroundColor};
-                        color: ${this.inputData?.title?.color ?? this.themeTitleColor};"
-                >
-                    ${this.inputData?.title?.text}
+                <h3 class="paging" ?active=${this.inputData?.title} style="color: ${this.themeTitleColor};">
+                    ${this.inputData?.title}
                 </h3>
                 <p
                     class="paging"
-                    ?active=${this.inputData?.subTitle?.text}
-                    style="font-size: ${this.inputData?.subTitle?.fontSize}; 
-                        font-weight: ${this.inputData?.subTitle?.fontWeight}; 
-                        color: ${this.inputData?.subTitle?.color ?? this.themeSubtitleColor};"
+                    ?active=${this.inputData?.subTitle}
+                    style="color: ${this.themeSubtitleColor};"
                 >
-                    ${this.inputData?.subTitle?.text}
+                    ${this.inputData?.subTitle}
                 </p>
                 <div
                     class="paging no-data"
-                    ?active=${!this.inputData?.imageLink}
-                    style="font-size: ${this.inputData?.title?.fontSize}; 
-                        font-weight: ${this.inputData?.title?.fontWeight}; 
-                        color: ${this.inputData?.title?.color ?? this.themeTitleColor};"
+                    ?active=${!this.inputData?.image}
+                    style="color: ${this.themeTitleColor};"
                 >
                     No Image
                 </div>
-                <div class="img-container paging" ?active="${this.inputData?.imageLink}">
-                    <img src="${this.inputData?.imageLink ?? ''}" alt="Image Widget" />
+                <div class="img-container paging" ?active="${this.inputData?.image}">
+                    <img src="${this.inputData?.image ?? ''}" alt="Image Widget" />
                 </div>
             </div>
         `
     }
 }
-window.customElements.define('widget-image-versionplaceholder', WidgetImage)
