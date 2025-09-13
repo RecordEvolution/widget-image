@@ -1,6 +1,6 @@
 import { html, css, LitElement, PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
-import { ConfigureTheImage } from './definition-schema.js'
+import { InputData } from './definition-schema'
 type Theme = {
     theme_name: string
     theme_object: any
@@ -8,7 +8,7 @@ type Theme = {
 @customElement('widget-image-versionplaceholder')
 export class WidgetImage extends LitElement {
     @property({ type: Object })
-    inputData?: ConfigureTheImage
+    inputData?: InputData
 
     @property({ type: Object })
     theme?: Theme

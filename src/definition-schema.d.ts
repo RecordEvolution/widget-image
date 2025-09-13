@@ -8,12 +8,12 @@
 export type Title = string;
 export type SubtitleSettings = string;
 
-export interface ConfigureTheImage {
+export interface InputData {
   title?: Title;
   subTitle?: SubtitleSettings;
-  imageLink?: LinkToTheImage;
+  image?: UploadImageFile;
   [k: string]: unknown;
 }
-export interface LinkToTheImage {
+export interface UploadImageFile {
   [k: string]: unknown;
 }
