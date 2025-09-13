@@ -6,11 +6,11 @@
  */
 
 export type Title = string;
-export type SubtitleSettings = string;
+export type Subtitle = string;
 
 export interface InputData {
   title?: Title;
-  subTitle?: SubtitleSettings;
+  subTitle?: Subtitle;
   image?: UploadImageFile;
   [k: string]: unknown;
 }
