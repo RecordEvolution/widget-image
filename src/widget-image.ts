@@ -101,6 +101,9 @@ export class WidgetImage extends LitElement {
     `
 
     render() {
+        const url = this.inputData?.useUpload
+            ? (this.inputData?.image ?? '')
+            : (this.inputData?.imageUrl ?? '')
         return html`
             <div class="wrapper" style="background-color: ${this.themeBgColor}">
                 <h3 class="paging" ?active=${this.inputData?.title} style="color: ${this.themeTitleColor};">
@@ -113,15 +116,11 @@ export class WidgetImage extends LitElement {
                 >
                     ${this.inputData?.subTitle}
                 </p>
-                <div
-                    class="paging no-data"
-                    ?active=${!this.inputData?.image}
-                    style="color: ${this.themeTitleColor};"
-                >
+                <div class="paging no-data" ?active=${!url} style="color: ${this.themeTitleColor};">
                     No Image
                 </div>
-                <div class="img-container paging" ?active="${this.inputData?.image}">
-                    <img src="${this.inputData?.image ?? ''}" alt="Image Widget" />
+                <div class="img-container paging" ?active="${url}">
+                    <img src="${url}" alt="Image Widget" />
                 </div>
             </div>
         `

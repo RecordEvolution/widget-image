@@ -7,10 +7,17 @@
 
 export type Title = string;
 export type Subtitle = string;
+export type ImageURL = string;
+/**
+ * If true, the image upload will be used instead of the image URL
+ */
+export type UseImageUpload = boolean;
 
 export interface InputData {
   title?: Title;
   subTitle?: Subtitle;
+  imageUrl?: ImageURL;
+  useUpload?: UseImageUpload;
   image?: UploadImageFile;
   [k: string]: unknown;
 }

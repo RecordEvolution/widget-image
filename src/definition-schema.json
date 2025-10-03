@@ -12,10 +12,29 @@
             "order": 2,
             "type": "string"
         },
+        "imageUrl": {
+            "title": "Image URL",
+            "order": 3,
+            "condition": {
+                "relativePath": "../useUpload",
+                "showIfValueIn": [false]
+            },
+            "type": "string"
+        },
+        "useUpload": {
+            "title": "Use image upload",
+            "description": "If true, the image upload will be used instead of the image URL",
+            "order": 4,
+            "type": "boolean"
+        },
         "image": {
             "title": "Upload image file",
-            "order": 3,
+            "order": 5,
             "dataDrivenDisabled": true,
+            "condition": {
+                "relativePath": "../useUpload",
+                "showIfValueIn": [true]
+            },
             "type": "image"
         }
     }
