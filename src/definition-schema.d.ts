@@ -7,18 +7,50 @@
 
 export type Title = string;
 export type Subtitle = string;
+/**
+ * If enabled, the image will stretch to fill the entire widget area. If disabled, the image will maintain its aspect ratio.
+ */
+export type StretchToFill = boolean;
+/**
+ * Display multiple images based on URLs in a list.
+ */
+export type MultiImage = boolean;
+/**
+ * The gap between images in pixels.
+ */
+export type Gap = number;
 export type ImageURL = string;
 /**
  * If true, the image upload will be used instead of the image URL
  */
 export type UseImageUpload = boolean;
+/**
+ * This should be a valid URL string.
+ */
+export type ImageURL1 = string;
+/**
+ * Optionally provide a title for this image.
+ */
+export type Title1 = string;
+/**
+ * A list of image URLs to layout.
+ */
+export type Images = {
+  imageUrl?: ImageURL1;
+  title?: Title1;
+  [k: string]: unknown;
+}[];
 
 export interface InputData {
   title?: Title;
   subTitle?: Subtitle;
+  stretchToFit?: StretchToFill;
+  multiImage?: MultiImage;
+  gap?: Gap;
   imageUrl?: ImageURL;
   useUpload?: UseImageUpload;
   image?: UploadImageFile;
+  data?: Images;
   [k: string]: unknown;
 }
 export interface UploadImageFile {

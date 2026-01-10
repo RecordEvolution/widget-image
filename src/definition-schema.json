@@ -12,11 +12,35 @@
             "order": 2,
             "type": "string"
         },
+        "stretchToFit": {
+            "title": "Stretch to fill",
+            "type": "boolean",
+            "description": "If enabled, the image will stretch to fill the entire widget area. If disabled, the image will maintain its aspect ratio.",
+            "dataDrivenDisabled": true,
+            "order": 3
+        },
+        "multiImage": {
+            "title": "Multi Image",
+            "description": "Display multiple images based on URLs in a list.",
+            "type": "boolean",
+            "dataDrivenDisabled": true,
+            "order": 4
+        },
+        "gap": {
+            "title": "Gap",
+            "type": "number",
+            "description": "The gap between images in pixels.",
+            "order": 5,
+            "condition": {
+                "relativePath": "../multiImage",
+                "showIfValueIn": [true]
+            }
+        },
         "imageUrl": {
             "title": "Image URL",
-            "order": 3,
+            "order": 6,
             "condition": {
-                "relativePath": "../useUpload",
+                "relativePath": "../multiImage",
                 "showIfValueIn": [false]
             },
             "type": "string"
@@ -24,18 +48,49 @@
         "useUpload": {
             "title": "Use image upload",
             "description": "If true, the image upload will be used instead of the image URL",
-            "order": 4,
+            "order": 7,
+            "condition": {
+                "relativePath": "../multiImage",
+                "showIfValueIn": [false]
+            },
             "type": "boolean"
         },
         "image": {
             "title": "Upload image file",
-            "order": 5,
+            "order": 8,
             "dataDrivenDisabled": true,
             "condition": {
                 "relativePath": "../useUpload",
                 "showIfValueIn": [true]
             },
             "type": "image"
+        },
+        "data": {
+            "title": "Images",
+            "description": "A list of image URLs to layout.",
+            "type": "array",
+            "condition": {
+                "relativePath": "../multiImage",
+                "showIfValueIn": [true]
+            },
+            "order": 9,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "imageUrl": {
+                        "title": "Image URL",
+                        "description": "This should be a valid URL string.",
+                        "type": "string",
+                        "order": 1
+                    },
+                    "title": {
+                        "title": "Title",
+                        "description": "Optionally provide a title for this image.",
+                        "type": "string",
+                        "order": 2
+                    }
+                }
+            }
         }
     }
 }
