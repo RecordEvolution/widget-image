@@ -48,6 +48,7 @@
         "useUpload": {
             "title": "Use image upload",
             "description": "If true, the image upload will be used instead of the image URL",
+            "dataDrivenDisabled": true,
             "order": 7,
             "condition": {
                 "relativePath": "../multiImage",
