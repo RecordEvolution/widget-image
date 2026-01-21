@@ -36,9 +36,15 @@
                 "showIfValueIn": [true]
             }
         },
+        "labelFontSize": {
+            "title": "Image Label Font Size",
+            "type": "number",
+            "description": "Font size for the image label in pixels.",
+            "order": 6
+        },
         "imageUrl": {
             "title": "Image URL",
-            "order": 6,
+            "order": 7,
             "condition": {
                 "relativePath": "../multiImage",
                 "showIfValueIn": [false]
@@ -49,7 +55,7 @@
             "title": "Use image upload",
             "description": "If true, the image upload will be used instead of the image URL",
             "dataDrivenDisabled": true,
-            "order": 7,
+            "order": 8,
             "condition": {
                 "relativePath": "../multiImage",
                 "showIfValueIn": [false]
@@ -58,7 +64,7 @@
         },
         "image": {
             "title": "Upload image file",
-            "order": 8,
+            "order": 9,
             "dataDrivenDisabled": true,
             "condition": {
                 "relativePath": "../useUpload",
@@ -74,21 +80,27 @@
                 "relativePath": "../multiImage",
                 "showIfValueIn": [true]
             },
-            "order": 9,
+            "order": 10,
             "items": {
                 "type": "object",
                 "properties": {
+                    "timestamp": {
+                        "title": "Timestamp",
+                        "description": "Unix timestamp in milliseconds for time-based filtering.",
+                        "type": "number",
+                        "order": 1
+                    },
                     "imageUrl": {
                         "title": "Image URL",
                         "description": "This should be a valid URL string.",
                         "type": "string",
-                        "order": 1
-                    },
-                    "title": {
-                        "title": "Title",
-                        "description": "Optionally provide a title for this image.",
-                        "type": "string",
                         "order": 2
+                    },
+                    "label": {
+                        "title": "Image Label",
+                        "description": "Optionally provide a label for this image.",
+                        "type": "string",
+                        "order": 3
                     }
                 }
             }

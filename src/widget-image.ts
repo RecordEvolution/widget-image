@@ -15,6 +15,9 @@ export class WidgetImage extends LitElement {
     @property({ type: Object })
     theme?: Theme
 
+    @property({ type: Object })
+    timeRange?: { start: number; end: number }
+
     @state() private themeBgColor?: string
     @state() private themeTitleColor?: string
     @state() private themeSubtitleColor?: string
@@ -34,7 +37,7 @@ export class WidgetImage extends LitElement {
     }
 
     update(changedProperties: Map<string, any>) {
-        if (changedProperties.has('inputData')) {
+        if (changedProperties.has('inputData') || changedProperties.has('timeRange')) {
             this.updateGridLayout()
         }
 
@@ -69,20 +72,47 @@ export class WidgetImage extends LitElement {
     }
 
     /**
-     * Update grid layout based on container size and number of elements
+     * Get images filtered by timeRange if available
      */
-    updateGridLayout() {
-        if (!this.wrapper) return
-
+    getFilteredImages() {
         const singleImageUrl = this.inputData?.useUpload
             ? typeof this.inputData?.image === 'string'
                 ? this.inputData.image
                 : ''
             : (this.inputData?.imageUrl ?? '')
 
-        const images = this.inputData?.multiImage
+        let images = this.inputData?.multiImage
             ? (this.inputData?.data ?? [])
-            : [{ imageUrl: singleImageUrl, title: this.inputData?.title ?? '' }]
+            : [{ imageUrl: singleImageUrl, label: this.inputData?.title ?? '' }]
+
+        // Filter by timeRange if provided and in multi-image mode
+        if (this.timeRange && this.inputData?.multiImage) {
+            const timeRangeStart = Number(this.timeRange.start)
+            const timeRangeEnd = Number(this.timeRange.end)
+
+            if (!isNaN(timeRangeStart) || !isNaN(timeRangeEnd)) {
+                images = images.filter((img) => {
+                    const timestamp = img.timestamp
+                    if (timestamp === undefined || timestamp === null) return true // Keep images without timestamps
+                    const ts = Number(timestamp)
+                    if (isNaN(ts)) return true // Keep if timestamp is not a valid number
+                    if (!isNaN(timeRangeStart) && ts < timeRangeStart) return false
+                    if (!isNaN(timeRangeEnd) && ts > timeRangeEnd) return false
+                    return true
+                })
+            }
+        }
+
+        return images
+    }
+
+    /**
+     * Update grid layout based on container size and number of elements
+     */
+    updateGridLayout() {
+        if (!this.wrapper) return
+
+        const images = this.getFilteredImages()
 
         const numElements = images.length
         if (numElements === 0) return
@@ -273,18 +303,10 @@ export class WidgetImage extends LitElement {
     `
 
     render() {
-        const singleImageUrl = this.inputData?.useUpload
-            ? typeof this.inputData?.image === 'string'
-                ? this.inputData.image
-                : ''
-            : (this.inputData?.imageUrl ?? '')
-
-        const images = this.inputData?.multiImage
-            ? (this.inputData?.data ?? [])
-            : [{ imageUrl: singleImageUrl, title: this.inputData?.title ?? '' }]
+        const images = this.getFilteredImages()
 
         const hasMultipleItems = images.length > 1
-        const showTitles = images.filter((img) => img.title).length > 0
+        const showTitles = images.filter((img) => img.label).length > 0
         const hasAnyImage = images.some((img) => img.imageUrl)
 
         return html`
@@ -328,11 +350,20 @@ export class WidgetImage extends LitElement {
                             class="image-item"
                             style="width: ${this.elementWidth}px; height: ${this.elementHeight}px;"
                         >
-                            ${showTitles ? html`<h2 class="title">${img.title ?? ''}</h2>` : nothing}
+                            ${showTitles
+                                ? html`<h2
+                                      class="title"
+                                      style="${this.inputData?.labelFontSize
+                                          ? `font-size: ${this.inputData.labelFontSize}px;`
+                                          : ''}"
+                                  >
+                                      ${img.label ?? ''}
+                                  </h2>`
+                                : nothing}
                             <div class="img-container paging" ?active="${img.imageUrl}">
                                 <img
                                     src="${ifDefined(img.imageUrl)}"
-                                    alt="${img.title || 'Image Widget'}"
+                                    alt="${img.label || 'Image Widget'}"
                                     style="object-fit: ${this.inputData?.stretchToFit ? 'fill' : 'contain'}"
                                 />
                             </div>

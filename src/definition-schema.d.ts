@@ -19,25 +19,34 @@ export type MultiImage = boolean;
  * The gap between images in pixels.
  */
 export type Gap = number;
+/**
+ * Font size for the image label in pixels.
+ */
+export type ImageLabelFontSize = number;
 export type ImageURL = string;
 /**
  * If true, the image upload will be used instead of the image URL
  */
 export type UseImageUpload = boolean;
 /**
+ * Unix timestamp in milliseconds for time-based filtering.
+ */
+export type Timestamp = number;
+/**
  * This should be a valid URL string.
  */
 export type ImageURL1 = string;
 /**
- * Optionally provide a title for this image.
+ * Optionally provide a label for this image.
  */
-export type Title1 = string;
+export type ImageLabel = string;
 /**
  * A list of image URLs to layout.
  */
 export type Images = {
+  timestamp?: Timestamp;
   imageUrl?: ImageURL1;
-  title?: Title1;
+  label?: ImageLabel;
   [k: string]: unknown;
 }[];
 
@@ -47,6 +56,7 @@ export interface InputData {
   stretchToFit?: StretchToFill;
   multiImage?: MultiImage;
   gap?: Gap;
+  labelFontSize?: ImageLabelFontSize;
   imageUrl?: ImageURL;
   useUpload?: UseImageUpload;
   image?: UploadImageFile;
