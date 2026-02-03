@@ -1,27 +1,30 @@
 {
     "title": "InputData",
+    "description": "An image display widget for showing single or multiple images from URLs or uploads. Use this widget to display photos, diagrams, camera feeds, or any visual content on dashboards. Supports single image mode with direct URL or file upload, and multi-image mode for grid layouts of multiple images with optional labels. Features time-based filtering for displaying images within a selected time range and responsive grid layouts that optimize image arrangement based on available space.",
     "type": "object",
     "properties": {
         "title": {
             "title": "Title",
+            "description": "The main heading displayed above the image in single-image mode. Use to describe or label the image content.",
             "order": 1,
             "type": "string"
         },
         "subTitle": {
             "title": "Subtitle",
+            "description": "Secondary text displayed below the title in single-image mode. Use for additional context, timestamps, or source information.",
             "order": 2,
             "type": "string"
         },
         "stretchToFit": {
             "title": "Stretch to fill",
             "type": "boolean",
-            "description": "If enabled, the image will stretch to fill the entire widget area. If disabled, the image will maintain its aspect ratio.",
+            "description": "When enabled, images stretch to fill the entire widget area, potentially distorting aspect ratio. When disabled, images maintain their original aspect ratio and are contained within the widget bounds with letterboxing if needed.",
             "dataDrivenDisabled": true,
             "order": 3
         },
         "multiImage": {
             "title": "Multi Image",
-            "description": "Display multiple images based on URLs in a list.",
+            "description": "When enabled, displays multiple images in a responsive grid layout from the data array. When disabled, shows a single image from imageUrl or uploaded file. Enable for galleries, camera grids, or comparing multiple visual assets.",
             "type": "boolean",
             "dataDrivenDisabled": true,
             "order": 4
@@ -29,7 +32,7 @@
         "gap": {
             "title": "Gap",
             "type": "number",
-            "description": "The gap between images in pixels.",
+            "description": "Spacing between images in pixels when using multi-image mode. Increase for visual separation, decrease for compact grids. The gap scales proportionally with image size.",
             "order": 5,
             "condition": {
                 "relativePath": "../multiImage",
@@ -39,11 +42,12 @@
         "labelFontSize": {
             "title": "Image Label Font Size",
             "type": "number",
-            "description": "Font size for the image label in pixels.",
+            "description": "Font size in pixels for image labels displayed below each image. Applies to both single and multi-image modes when labels are provided.",
             "order": 6
         },
         "imageUrl": {
             "title": "Image URL",
+            "description": "Direct URL to the image file for single-image mode (e.g., 'https://example.com/image.jpg'). Can be bound to a data column for dynamic image sources. Used when 'Use image upload' is disabled.",
             "order": 7,
             "condition": {
                 "relativePath": "../multiImage",
@@ -53,7 +57,7 @@
         },
         "useUpload": {
             "title": "Use image upload",
-            "description": "If true, the image upload will be used instead of the image URL",
+            "description": "When enabled, displays an uploaded image file instead of loading from URL. Use for static images that don't change or when the image isn't accessible via URL.",
             "dataDrivenDisabled": true,
             "order": 8,
             "condition": {
@@ -64,6 +68,7 @@
         },
         "image": {
             "title": "Upload image file",
+            "description": "Upload an image file directly to the dashboard. Supports common formats (PNG, JPG, GIF, SVG). The image is stored with the dashboard configuration.",
             "order": 9,
             "dataDrivenDisabled": true,
             "condition": {
@@ -74,7 +79,7 @@
         },
         "data": {
             "title": "Images",
-            "description": "A list of image URLs to layout.",
+            "description": "Array of images for multi-image mode. Each entry specifies an image URL, optional label, and optional timestamp for time-based filtering. Images are arranged in an optimized responsive grid.",
             "type": "array",
             "condition": {
                 "relativePath": "../multiImage",
@@ -86,19 +91,19 @@
                 "properties": {
                     "timestamp": {
                         "title": "Timestamp",
-                        "description": "Unix timestamp in milliseconds for time-based filtering.",
+                        "description": "Unix timestamp in milliseconds for time-based filtering. When a timeRange filter is active, only images with timestamps within the range are displayed. Images without timestamps are always shown.",
                         "type": "number",
                         "order": 1
                     },
                     "imageUrl": {
                         "title": "Image URL",
-                        "description": "This should be a valid URL string.",
+                        "description": "Full URL to the image file. Must be a valid, accessible URL starting with http:// or https://.",
                         "type": "string",
                         "order": 2
                     },
                     "label": {
                         "title": "Image Label",
-                        "description": "Optionally provide a label for this image.",
+                        "description": "Text label displayed below this image. Use for identification, captions, or metadata like camera name or timestamp.",
                         "type": "string",
                         "order": 3
                     }
