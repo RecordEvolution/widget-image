@@ -5,43 +5,52 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+/**
+ * The main heading displayed above the image in single-image mode. Use to describe or label the image content.
+ */
 export type Title = string;
+/**
+ * Secondary text displayed below the title in single-image mode. Use for additional context, timestamps, or source information.
+ */
 export type Subtitle = string;
 /**
- * If enabled, the image will stretch to fill the entire widget area. If disabled, the image will maintain its aspect ratio.
+ * When enabled, images stretch to fill the entire widget area, potentially distorting aspect ratio. When disabled, images maintain their original aspect ratio and are contained within the widget bounds with letterboxing if needed.
  */
 export type StretchToFill = boolean;
 /**
- * Display multiple images based on URLs in a list.
+ * When enabled, displays multiple images in a responsive grid layout from the data array. When disabled, shows a single image from imageUrl or uploaded file. Enable for galleries, camera grids, or comparing multiple visual assets.
  */
 export type MultiImage = boolean;
 /**
- * The gap between images in pixels.
+ * Spacing between images in pixels when using multi-image mode. Increase for visual separation, decrease for compact grids. The gap scales proportionally with image size.
  */
 export type Gap = number;
 /**
- * Font size for the image label in pixels.
+ * Font size in pixels for image labels displayed below each image. Applies to both single and multi-image modes when labels are provided.
  */
 export type ImageLabelFontSize = number;
+/**
+ * Direct URL to the image file for single-image mode (e.g., 'https://example.com/image.jpg'). Can be bound to a data column for dynamic image sources. Used when 'Use image upload' is disabled.
+ */
 export type ImageURL = string;
 /**
- * If true, the image upload will be used instead of the image URL
+ * When enabled, displays an uploaded image file instead of loading from URL. Use for static images that don't change or when the image isn't accessible via URL.
  */
 export type UseImageUpload = boolean;
 /**
- * Unix timestamp in milliseconds for time-based filtering.
+ * Unix timestamp in milliseconds for time-based filtering. When a timeRange filter is active, only images with timestamps within the range are displayed. Images without timestamps are always shown.
  */
 export type Timestamp = number;
 /**
- * This should be a valid URL string.
+ * Full URL to the image file. Must be a valid, accessible URL starting with http:// or https://.
  */
 export type ImageURL1 = string;
 /**
- * Optionally provide a label for this image.
+ * Text label displayed below this image. Use for identification, captions, or metadata like camera name or timestamp.
  */
 export type ImageLabel = string;
 /**
- * A list of image URLs to layout.
+ * Array of images for multi-image mode. Each entry specifies an image URL, optional label, and optional timestamp for time-based filtering. Images are arranged in an optimized responsive grid.
  */
 export type Images = {
   timestamp?: Timestamp;
@@ -50,6 +59,9 @@ export type Images = {
   [k: string]: unknown;
 }[];
 
+/**
+ * An image display widget for showing single or multiple images from URLs or uploads. Use this widget to display photos, diagrams, camera feeds, or any visual content on dashboards. Supports single image mode with direct URL or file upload, and multi-image mode for grid layouts of multiple images with optional labels. Features time-based filtering for displaying images within a selected time range and responsive grid layouts that optimize image arrangement based on available space.
+ */
 export interface InputData {
   title?: Title;
   subTitle?: Subtitle;
@@ -63,6 +75,9 @@ export interface InputData {
   data?: Images;
   [k: string]: unknown;
 }
+/**
+ * Upload an image file directly to the dashboard. Supports common formats (PNG, JPG, GIF, SVG). The image is stored with the dashboard configuration.
+ */
 export interface UploadImageFile {
   [k: string]: unknown;
 }
