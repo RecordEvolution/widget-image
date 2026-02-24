@@ -20,7 +20,6 @@ export class WidgetImage extends LitElement {
 
     @state() private themeBgColor?: string
     @state() private themeTitleColor?: string
-    @state() private themeSubtitleColor?: string
     @state() private elementWidth: number = 0
     @state() private elementHeight: number = 0
 
@@ -67,8 +66,6 @@ export class WidgetImage extends LitElement {
         const cssBgColor = getComputedStyle(this).getPropertyValue('--re-tile-background-color').trim()
         this.themeBgColor = cssBgColor || this.theme?.theme_object?.backgroundColor
         this.themeTitleColor = cssTextColor || this.theme?.theme_object?.title?.textStyle?.color
-        this.themeSubtitleColor =
-            cssTextColor || this.theme?.theme_object?.title?.subtextStyle?.color || this.themeTitleColor
     }
 
     /**
@@ -317,28 +314,6 @@ export class WidgetImage extends LitElement {
                     ? `${this.inputData?.gap ?? 12}px`
                     : '0px'}; ${!hasMultipleItems ? 'flex-direction: column;' : ''}"
             >
-                ${!hasMultipleItems && this.inputData?.title
-                    ? html`
-                          <h3
-                              class="paging"
-                              ?active=${this.inputData?.title}
-                              style="color: ${this.themeTitleColor};"
-                          >
-                              ${this.inputData?.title}
-                          </h3>
-                      `
-                    : nothing}
-                ${!hasMultipleItems && this.inputData?.subTitle
-                    ? html`
-                          <p
-                              class="paging"
-                              ?active=${this.inputData?.subTitle}
-                              style="color: ${this.themeSubtitleColor};"
-                          >
-                              ${this.inputData?.subTitle}
-                          </p>
-                      `
-                    : nothing}
                 <div class="paging no-data" ?active=${!hasAnyImage} style="color: ${this.themeTitleColor};">
                     No Image
                 </div>
@@ -357,7 +332,15 @@ export class WidgetImage extends LitElement {
                                           ? `font-size: ${this.inputData.labelFontSize}px;`
                                           : ''}"
                                   >
-                                      ${img.label ?? ''}
+                                      ${this.inputData?.titleLink
+                                          ? html`<a
+                                                href="${this.inputData.titleLink}"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                style="color: inherit; text-decoration: underline;"
+                                                >${img.label ?? ''}</a
+                                            >`
+                                          : (img.label ?? '')}
                                   </h2>`
                                 : nothing}
                             <div class="img-container paging" ?active="${img.imageUrl}">

@@ -10,9 +10,9 @@
  */
 export type Title = string;
 /**
- * Secondary text displayed below the title in single-image mode. Use for additional context, timestamps, or source information.
+ * Optional URL for the title. When provided, the title becomes a clickable link.
  */
-export type Subtitle = string;
+export type TitleLink = string;
 /**
  * When enabled, images stretch to fill the entire widget area, potentially distorting aspect ratio. When disabled, images maintain their original aspect ratio and are contained within the widget bounds with letterboxing if needed.
  */
@@ -60,11 +60,11 @@ export type Images = {
 }[];
 
 /**
- * An image display widget for showing single or multiple images from URLs or uploads. Use this widget to display photos, diagrams, camera feeds, or any visual content on dashboards. Supports single image mode with direct URL or file upload, and multi-image mode for grid layouts of multiple images with optional labels. Features time-based filtering for displaying images within a selected time range and responsive grid layouts that optimize image arrangement based on available space.
+ * An image display widget for showing single or multiple images from URLs or base64-encoded data. Use this widget to display photos, diagrams, camera feeds, or any visual content on dashboards. Supports single image mode with direct URL or file upload, and multi-image mode for grid layouts of multiple images with optional labels. Features time-based filtering for displaying images within a selected time range and responsive grid layouts that optimize image arrangement based on available space.
  */
 export interface InputData {
   title?: Title;
-  subTitle?: Subtitle;
+  titleLink?: TitleLink;
   stretchToFit?: StretchToFill;
   multiImage?: MultiImage;
   gap?: Gap;
