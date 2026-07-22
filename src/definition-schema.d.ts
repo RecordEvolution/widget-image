@@ -30,7 +30,7 @@ export type Gap = number;
  */
 export type ImageLabelFontSize = number;
 /**
- * Direct URL to the image file for single-image mode (e.g., 'https://example.com/image.jpg'). Can be bound to a data column for dynamic image sources. Used when 'Use image upload' is disabled.
+ * Image source for single-image mode. Accepts a direct URL (e.g., 'https://example.com/image.jpg') or a base64-encoded image supplied as a data URI. Can be bound to a data column for dynamic image sources (e.g. a database column). Base64 values MUST include the data-URI prefix with the correct MIME type: 'data:image/png;base64,<data>' (or image/jpeg, image/gif, image/svg+xml, etc.) — a raw base64 string without this prefix will not render. The base64 payload must contain no whitespace or line breaks. Used when 'Use image upload' is disabled.
  */
 export type ImageURL = string;
 /**
@@ -42,7 +42,7 @@ export type UseImageUpload = boolean;
  */
 export type Timestamp = number;
 /**
- * Full URL to the image file. Must be a valid, accessible URL starting with http:// or https://.
+ * Image source for this entry. Either a full, accessible URL starting with http:// or https://, or a base64-encoded image supplied as a data URI. Can be bound to a data column (e.g. a database column). Base64 values MUST include the data-URI prefix with the correct MIME type: 'data:image/png;base64,<data>' (or image/jpeg, image/gif, image/svg+xml, etc.) — a raw base64 string without this prefix will not render. The base64 payload must contain no whitespace or line breaks.
  */
 export type ImageURL1 = string;
 /**
