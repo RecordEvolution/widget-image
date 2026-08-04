@@ -2,7 +2,7 @@ import { html, css, LitElement, PropertyValues, PropertyValueMap, nothing } from
 import { repeat } from 'lit/directives/repeat.js'
 import { ifDefined } from 'lit/directives/if-defined.js'
 import { customElement, property, state, query } from 'lit/decorators.js'
-import { InputData } from './definition-schema'
+import { ImageConfiguration } from './definition-schema'
 type Theme = {
     theme_name: string
     theme_object: any
@@ -10,7 +10,7 @@ type Theme = {
 @customElement('widget-image-versionplaceholder')
 export class WidgetImage extends LitElement {
     @property({ type: Object })
-    inputData?: InputData
+    inputData?: ImageConfiguration
 
     @property({ type: Object })
     theme?: Theme

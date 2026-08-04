@@ -41,14 +41,14 @@ The component decorator uses a literal placeholder:
 - `"dataDrivenDisabled": true` — field cannot be data-bound from IoT sources
 - `"condition"` — conditional field visibility
 
-**Workflow:** edit `definition-schema.json` → run `npm run types` → `definition-schema.d.ts` is regenerated (do not edit by hand) → import generated `InputData` type into `widget-image.ts`.
+**Workflow:** edit `definition-schema.json` → run `npm run types` → `definition-schema.d.ts` is regenerated (do not edit by hand) → import generated `ImageConfiguration` type into `widget-image.ts`.
 
 ### Universal widget API
 
 All IronFlock widgets expose the same three reactive properties:
 
 ```ts
-@property({ type: Object }) inputData?: InputData                            // from schema
+@property({ type: Object }) inputData?: ImageConfiguration                            // from schema
 @property({ type: Object }) theme?: { theme_name: string; theme_object: any } // platform theme
 @property({ type: Object }) timeRange?: { start: number; end: number }       // Unix ms, for filtering
 ```
@@ -82,3 +82,25 @@ After `npm run release` and publish, register the new version with the IronFlock
 ```sql
 select swarm.f_update_widget_master('{"package_name": "widget-image", "version": "X.Y.Z"}'::jsonb);
 ```
+
+## `aiSelection` in `src/definition-schema.json`
+
+The schema root carries an `aiSelection` block next to `title` and `description`. It is **not** JSON Schema and describes no config field — it exists so the IronFlock AI's Widget Builder can pick the right widget for a given shape of data, using knowledge only the widget author has:
+
+```jsonc
+"aiSelection": {
+  "dataShape": "…what columns this widget consumes and what each one means…",
+  "useWhen":   ["…a situation, naming the properties that express it…"],
+  "notFor":    ["…a situation this widget is wrong for, naming the widget to use instead…"]
+}
+```
+
+It is inert everywhere else, and must stay that way: `json2ts` ignores it (the generated `.d.ts` is byte-identical with and without it), the dashboard config editor renders only `schema.properties`, and the AI service's `validate_widget` validates *configs* against the schema, skipping unknown Draft-7 keywords.
+
+When maintaining it:
+
+- `notFor` is the high-value half and the part plain descriptions always omit. Every entry must name the widget that *should* be used, or it rejects without routing.
+- Write for an LLM with no other documentation: describe the visible result and the user's intent, not the implementation.
+- Prefer entries that discriminate against a *neighbouring* widget. Generic rejections are cheap; the ones that pay are those an author could plausibly get wrong.
+- The `notFor` lists are a set across all `widget-*` repos and are meant to be reciprocal — if this widget routes to another for some case, that widget should usually route back for the converse. Changing one side is a cue to check the other.
+- Update it whenever a property changes what this widget can *do*, not just how it looks.

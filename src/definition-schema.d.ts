@@ -62,7 +62,7 @@ export type Images = {
 /**
  * An image display widget for showing single or multiple images from URLs or base64-encoded data. Use this widget to display photos, diagrams, camera feeds, or any visual content on dashboards. Supports single image mode with direct URL or file upload, and multi-image mode for grid layouts of multiple images with optional labels. Features time-based filtering for displaying images within a selected time range and responsive grid layouts that optimize image arrangement based on available space.
  */
-export interface InputData {
+export interface ImageConfiguration {
   title?: Title;
   titleLink?: TitleLink;
   stretchToFit?: StretchToFill;

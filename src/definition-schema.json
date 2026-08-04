@@ -1,6 +1,20 @@
 {
-    "title": "InputData",
+    "title": "Image Configuration",
     "description": "An image display widget for showing single or multiple images from URLs or base64-encoded data. Use this widget to display photos, diagrams, camera feeds, or any visual content on dashboards. Supports single image mode with direct URL or file upload, and multi-image mode for grid layouts of multiple images with optional labels. Features time-based filtering for displaying images within a selected time range and responsive grid layouts that optimize image arrangement based on available space.",
+    "aiSelection": {
+        "dataShape": "Image sources only: one imageUrl or uploaded file, or a list of data[] entries each with an imageUrl, an optional label and an optional timestamp for time-range filtering. Nothing numeric is plotted.",
+        "useWhen": [
+            "Photos, camera stills, diagrams, product shots or scans should be shown as they are.",
+            "A set of images should fill the tile as a responsive grid, optionally labelled (multiImage: true).",
+            "Images should follow the dashboard's selected time range through their timestamp."
+        ],
+        "notFor": [
+            "An image that needs live values drawn on top of it — a floor plan with readings, a schematic with fill levels. Use widget-overlay.",
+            "A live web page rather than a picture — use widget-embed.",
+            "An icon conveying status — use widget-signal, or widget-scada for an industrial symbol.",
+            "Images belonging to individual records alongside other fields — use widget-table with a column of type 'image'."
+        ]
+    },
     "type": "object",
     "properties": {
         "title": {
