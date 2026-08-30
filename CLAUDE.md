@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `npm run types`   | Regenerate `src/definition-schema.d.ts` from `definition-schema.json` via `json2ts`. Run after every schema edit. |
 | `npm run analyze` | Generate custom-elements manifest via `cem`                      |
 | `npm run link`    | Build + npm link, then link into `../RESWARM/frontend` for integration testing |
-| `npm run release` | `build` → regenerate types → `npm version patch` → `git push` (with tags) → rebuild |
+| `npm run release` | `npm version patch`: preflight guards (on `main`, clean tree, not behind `origin/main`, generated files current, build passes) → commit + bare-semver tag → `git push --follow-tags` → waits on the CI publish. Also `release:minor` / `release:major`. |
 
 No test runner or linter is configured. Node `>=24.9.0`, npm `>=10.0.2` (see `package.json` engines).
 
