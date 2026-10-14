@@ -45,14 +45,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/RecordEvolution/widget-image.git"
+        "url": "git+https://github.com/IronFlock/widget-image.git"
     },
     "keywords": [
         "widget",
         "image"
     ],
     "bugs": {
-        "url": "https://github.com/RecordEvolution/widget-image/issues"
+        "url": "https://github.com/IronFlock/widget-image/issues"
     },
-    "homepage": "https://github.com/RecordEvolution/widget-image#readme"
+    "homepage": "https://github.com/IronFlock/widget-image#readme"
 }
