@@ -7,14 +7,14 @@ A Lit 3.x web component for displaying images with single/multi-image modes, tim
 ## Installation
 
 ```bash
-npm i @record-evolution/widget-image
+npm i @ironflock/widget-image
 ```
 
 ## Usage
 
 ```html
 <script type="module">
-    import '@record-evolution/widget-image/dist/widget-image.js'
+    import '@ironflock/widget-image/dist/widget-image.js'
 </script>
 
 <widget-image-1.1.15></widget-image-1.1.15>

@@ -18,7 +18,7 @@ No test runner or linter is configured. Node `>=24.9.0`, npm `>=10.0.2` (see `pa
 
 ## Architecture
 
-Single-component Lit 3.x web component published as `@record-evolution/widget-image`. Part of the IronFlock multi-widget ecosystem (`widget-*` repos sharing identical patterns).
+Single-component Lit 3.x web component published as `@ironflock/widget-image`. Part of the IronFlock multi-widget ecosystem (`widget-*` repos sharing identical patterns).
 
 **Entry point:** `src/widget-image.ts` (Vite lib entry, builds to `dist/widget-image.js`).
 
