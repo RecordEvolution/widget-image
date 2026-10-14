@@ -10,7 +10,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `npm run build`   | Production build to `dist/` (Vite lib mode, ES output)           |
 | `npm run watch`   | `vite build --watch`                                             |
 | `npm run types`   | Regenerate `src/definition-schema.d.ts` from `definition-schema.json` via `json2ts`. Run after every schema edit. |
-| `npm run analyze` | Generate custom-elements manifest via `cem`                      |
 | `npm run link`    | Build + npm link, then link into `../RESWARM/frontend` for integration testing |
 | `npm run release` | `npm version patch`: preflight guards (on `main`, clean tree, not behind `origin/main`, generated files current, build passes) → bump + `dist/` rebuild (`version` hook, so the local build registers the new tag) → commit + bare-semver tag → `git push --follow-tags` → waits on the CI publish. Also `release:minor` / `release:major`. |
 
