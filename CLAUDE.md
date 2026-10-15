@@ -52,7 +52,7 @@ All IronFlock widgets expose the same three reactive properties:
 @property({ type: Object }) timeRange?: { start: number; end: number }       // Unix ms, for filtering
 ```
 
-Theme files for local testing live in `demo/themes/`. CSS custom properties `--re-text-color` and `--re-tile-background-color` are honored, falling back to the theme object. These are not snapshotted: `registerTheme()` stores a `var(--re-…, <theme value>)` chain, so a change to the host property repaints the tile live without the widget being told.
+Theme files for local testing live in `demo/themes/`. The CSS custom property `--re-text-color` is honored, falling back to the theme object. These are not snapshotted: `registerTheme()` stores a `var(--re-…, <theme value>)` chain, so a change to the host property repaints the tile live without the widget being told. The widget paints no background of its own: studio's `widget-item` already paints `--re-tile-background-color` on the tile, and painting it again here composited a translucent tile colour twice.
 
 ### Widget-specific logic
 

@@ -18,7 +18,6 @@ export class WidgetImage extends LitElement {
     @property({ type: Object })
     timeRange?: { start: number; end: number }
 
-    @state() private themeBgColor?: string
     @state() private themeTitleColor?: string
     @state() private elementWidth: number = 0
     @state() private elementHeight: number = 0
@@ -62,7 +61,6 @@ export class WidgetImage extends LitElement {
     }
 
     registerTheme(theme?: Theme) {
-        this.themeBgColor = `var(--re-tile-background-color, ${this.theme?.theme_object?.backgroundColor || 'transparent'})`
         this.themeTitleColor = `var(--re-text-color, ${this.theme?.theme_object?.title?.textStyle?.color || 'inherit'})`
     }
 
@@ -307,8 +305,7 @@ export class WidgetImage extends LitElement {
         return html`
             <div
                 class="wrapper"
-                style="background-color: ${this.themeBgColor}; color: ${this
-                    .themeTitleColor}; gap: ${hasMultipleItems
+                style="color: ${this.themeTitleColor}; gap: ${hasMultipleItems
                     ? `${this.inputData?.gap ?? 12}px`
                     : '0px'}; ${!hasMultipleItems ? 'flex-direction: column;' : ''}"
             >
